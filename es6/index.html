@@ -5,9 +5,6 @@
     <link rel="stylesheet" href="../master.css" type="text/css">
     <script src="../ready.js"></script>
     <script src="../master.js"></script>
-    <script>
-      var __yield_script_executed, __let_script_executed;
-    </script>
 </head>
 <body class="es6">
   <div id="header">
@@ -165,17 +162,6 @@ test(function () {
         <tr>
           <td id="let"><span><a class="anchor" href="#let">&sect;</a><a href="http://wiki.ecmascript.org/doku.php?id=harmony:let">let</a></span></td>
 <script>
-test((function () {
-  try {
-    return eval('(function () { let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
-  } catch (e) {
-    return false;
-  }
-}()));
-__let_script_executed = true;
-</script>
-<script>
-if (!__let_script_executed) {
   test((function () {
     try {
       return eval('(function () { "use strict"; __let_script_executed = true; let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
@@ -183,7 +169,6 @@ if (!__let_script_executed) {
       return false;
     }
   }()));
-}
 </script>
 
           <td class="no ie10">No</td>
@@ -603,13 +588,6 @@ test((function () {
     return false;
   }
 }()));
-__yield_script_executed = true;
-</script>
-<script>
-if (!__yield_script_executed) {
-  test(false);
-  __yield_script_executed = false;
-}
 </script>
 
           <td class="no ie10">No</td>
