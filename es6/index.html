@@ -164,7 +164,7 @@ test(function () {
 <script>
   test((function () {
     try {
-      return eval('(function () { "use strict"; __let_script_executed = true; let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
+      return eval('(function () { "use strict"; let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
     } catch (e) {
       return false;
     }
