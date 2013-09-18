@@ -164,9 +164,14 @@ test(function () {
 <script>
   test((function () {
     try {
+      return eval('(function () { let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
+    } catch (e) {
+      try {
+          //show that it doesn't work in non strict mode?
       return eval('(function () { "use strict"; let foobarbaz2 = 123; return foobarbaz2 == 123; }())');
     } catch (e) {
       return false;
+    }
     }
   }()));
 </script>
@@ -777,11 +782,17 @@ test(function () {
         <tr>
           <td id="WeakMaps"><span><a class="anchor" href="#WeakMaps">&sect;</a><a href="http://wiki.ecmascript.org/doku.php?id=harmony:weak_maps">WeakMaps</a></span></td>
 <script>
-test(typeof WeakMap !== 'undefined' &&
-    typeof WeakMap.prototype.get === 'function' &&
-    typeof WeakMap.prototype.set === 'function' &&
-    typeof WeakMap.prototype.clear === 'function' &&
-    typeof WeakMap.prototype.has === 'function');
+test(function () {
+  try {
+    var weakMap = new WeakMap();
+    var key = [1,2,3];
+    weakMap.set(key, 123);
+    return weakMap.has(key) && weakMap.get(key) === 123;
+    }
+  catch(err) {
+    return false;
+  }
+}());
 </script>
 
           <td class="no ie10">No</td>
