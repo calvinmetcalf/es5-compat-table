@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="../master.css" type="text/css">
     <script src="../ready.js"></script>
     <script src="../master.js"></script>
+    <script>
+      var __yield_script_executed = false, __let_script_executed = false;
+    </script>
 </head>
 <body class="es6">
   <div id="header">
@@ -542,11 +545,7 @@ test(function () {
 <script>
 test(function () {
   var obj = {
-    iterator: function() {
-      return {
-        next: function() { throw StopIteration }
-      }
-    }
+      next: function() { return {done:true,value:1} }
   };
   try {
     eval('for (var a of obj) {}');
@@ -593,6 +592,20 @@ test((function () {
     return false;
   }
 }()));
+__yield_script_executed = true;
+</script>
+<script>
+if (!__yield_script_executed) {
+  test((function () {
+    try {
+      eval('(function* () { yield 5; }())');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }()));
+  __yield_script_executed = true;
+}
 </script>
 
           <td class="no ie10">No</td>
